@@ -1,0 +1,21 @@
+<section id="tasks">
+  <header>
+    <h2>{{ userName() }}</h2>
+    <menu>
+      <button (click)="onStartAddTask()">Add Task</button>
+    </menu>
+  </header>
+
+  <ul>
+    @for (task of sortedTasks(); track task.id) {
+      <li>
+        <app-task [task]="task"/>
+      </li>
+    }
+  </ul>
+
+  @if (isAddingTask()) {
+    <app-new-task (closeDialogEvent)="onCloseAddTask()" (addTaskEvent)="onAddTask($event)" [userId]="userId()"/>
+  }
+
+</section>
